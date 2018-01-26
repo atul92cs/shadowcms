@@ -13,7 +13,7 @@ db.connect((error)=>{
 	console.log('Database connected');
 });
 
-var port=8080;
+var port=process.env.PORT||8080;
 
 var app = express();
 app.use(bodyparser.urlencoded({extended:false}));
