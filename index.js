@@ -56,7 +56,22 @@ app.get('/getAppointments/:vetid',function(req,res){
 	  });	  
 	
 });
-
+app.post('/bookAppointment',function(req,res){
+	
+	   var bookingId=req.body.id;
+	   var name=req.body.name;
+	   var contact=req.body.contact;
+	   var date=req.body.date;
+	   var time=req.body.time;
+	   var vetId=req.body.vet_id;
+	   let body={booking_id:bookingId,user_name:name,user_contact:contact,booking_date:date,booking_time:time,vet_id:vetId};
+        let sql='INSERT INTO vet_appointment SET ?';
+		let query=db.query(sql,body,(err,result)=>
+		{
+			if(err)throw err;
+			res.send('Appointment Booked');
+		});
+	   });
 app.listen(port,function(){
       console.log('app started on port 8080');
   });
