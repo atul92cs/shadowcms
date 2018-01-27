@@ -64,7 +64,9 @@ app.post('/bookAppointment',function(req,res){
 	   var date=req.body.date;
 	   var time=req.body.time;
 	   var vetId=req.body.vet_id;
-	   let body={booking_id:bookingId,user_name:name,user_contact:contact,booking_date:date,booking_time:time,vet_id:vetId};
+	   var cost=req.body.cost;
+	   var remark=req.body.remark;
+	   let body={booking_id:bookingId,user_name:name,user_contact:contact,booking_date:date,booking_time:time,vet_id:vetId,cost:cost,remark:remark};
         let sql='INSERT INTO vet_appointment SET ?';
 		let query=db.query(sql,body,(err,result)=>
 		{
@@ -72,6 +74,7 @@ app.post('/bookAppointment',function(req,res){
 			res.send('Appointment Booked');
 		});
 	   });
+
 app.listen(port,function(){
       console.log('app started on port 8080');
   });
